@@ -1,0 +1,275 @@
+* {
+	font-family: "Helvetica Neue Bold", Roboto, Helvetica, Arial, sans-serif;
+	font-weight: 700;
+}
+
+body {
+		/* Height and width fallback for older browsers. */
+    height: 100%;
+    width: 100%;
+
+    /* Set the height to match the height of the viewport. */
+    height: 100vh;
+
+    /* Set the width to match the width of the viewport. */
+    width: 100vw;
+}
+
+h1 {
+	font-family: "Helvetica Neue Light", Roboto, Helvetica, Arial, sans-serif;
+	font-size: 50px;
+	color: #A9A9A9;
+	line-height: 60px;
+	font-weight: 300;
+	margin-bottom: 30px;
+}
+
+h2 {
+	font-size: 36px;
+	color: #A9A9A9;
+	line-height: 29px;
+	margin-bottom: 20px;
+}
+
+h3 {
+	font-size: 18px;
+	color: #000000;
+	line-height: 23px;
+}
+ p {
+ 	font-family: "Helvetica Neue", Roboto, Helvetica, Arial, sans-serif;
+ 	font-size: 16px;
+ 	color: #A9A9A9;
+ 	line-height: 24px;
+ 	font-weight: 400;
+ }
+
+ a {
+ 	font-size: 18px;
+ 	line-height: 17px;
+ }
+
+.header {
+	vertical-align: center;
+	line-height: 1em;
+}
+
+.title {
+	font-size: 28px;
+	color: #A9A9A9;
+	line-height: 60px;
+	font-weight: 300;
+	text-align: left;
+}
+.padding-top {
+	padding-top: 30px;
+}
+.padding-bottom {
+	padding-bottom: 30px;
+}
+.margin-right {
+	margin-right: 30px;
+}
+.padding-none {
+	padding: 0;
+}
+
+.top-menu-left, .top-menu-right {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+.top-menu p {
+	margin-bottom: 0;
+	line-height: 16px;
+}
+.top-menu-left a {
+	margin-bottom: 0;
+	line-height: 16px;
+	font-size: 36px;
+	color: #FF3B3F;
+	font-weight: 400;
+	font-weight: bold;
+}
+
+.top-menu-right a {
+	margin-bottom: 0;
+	line-height: 16px;
+	font-size: 24px;
+	color: #A9A9A9;
+	font-weight: 400;
+	font-weight: bold;
+}
+
+
+.banner.main {
+	height: 200px;
+	background: url("/static/top-banner.jpg") transparent 5px 100%;
+	background-position: right top;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.categories {
+ 	background-color: #CAEBF2;
+ 	padding: 20px;
+ 	margin: 0;
+}
+
+.items {
+ 	background-color: #CAEBF2;
+ 	padding: 20px;	
+ 	border-left:medium #CC0000 solid; height:auto;
+}
+
+.blue {
+    background-color: #CAEBF2;
+}
+
+.alert {
+	color: #FF3B3F;
+	text-align: center;
+	font-weight: bold;
+}
+
+.neutral{
+    background-color: #EFEFEF;	
+}
+
+.menu-item {
+	background-color: #CAEBF2;
+	padding: 4px;
+	margin: 0px;
+	margin-left: 5px;
+}
+
+
+.menu-category {
+	color: #FF3B3F;
+	padding: 4px;
+	margin: 0px;
+	margin-left: 5px;
+}
+
+.flash {
+	background-color: #FF3B3F;
+	color: #FFF;
+	text-decoration: none;
+ 	font-size: 16px;
+ 	line-height: 24px;
+ }
+
+.flash li {
+	list-style-type: none;
+	text-align: middle;
+}
+
+.categories li {
+	list-style-type: none;
+	text-align: left;
+	line-height: 150%;
+}
+
+.categories a {
+	background-color: #CAEBF2;
+}
+
+.menu-category.hover {
+	background-color: yellow;
+}
+
+.items li {
+	list-style-type: none;
+	text-align: left;
+	line-height: 150%;
+
+}
+
+.login {
+	color: #A9A9A9;
+}
+
+.catalog:hover {
+	color: #A9A9A9;
+	background-color: #FF3B3F ;
+}
+
+.data {
+	min-height: 450px;
+}
+
+.new {
+	font-size: 16px;
+	margin-bottom: 16px;
+	color: #000;
+	text-align: right;
+
+}
+
+
+input[type=submit], input[type=delete], input[type=save] {
+    background-color: #FF3B3F;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+
+input[type=text] {
+	width: 100%;
+    background-color: white;
+    background-position: 10px 10px; 
+    padding-left: 5px;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+input[type=text]:focus {
+    border: 3px solid #A9A9A9;
+}
+
+select {
+    width: 100%;
+    padding: 0px 20px;
+    border: 1px solid;
+    border-radius: 4px;
+    background-color: #FFF;
+    margin-bottom: 50px;
+}
+
+.btn {
+    width: 100%;
+    padding: 16px 20px;
+    border: 1px solid;
+    border-radius: 4px;
+    background-color: #FFF;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.btn:hover {
+	border-color: #FF3B3F;
+}
+.btn.delete {
+	border-color: #FF3B3F;
+	color: #FF3B3F;
+}
+.btn.delete:hover {
+	border-color: #FF3B3F;
+	background-color: #FF3B3F;
+	color:#FFF;
+}
+
+.login {
+	color: #A9A9A9;
+	margin-bottom: 25px;
+}
+
+/* check if necessary
+*/
+
+und-color: #9FB80A;
+}

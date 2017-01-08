@@ -1,0 +1,18 @@
+<div class="row header blue">
+	<div class="col-md-6 top-menu-left">
+		<a href="{{url_for('showCategories')}}">
+			<span class="catalog"></span> CATALOG APP
+		</a>
+	</div>
+
+	<div class="col-md-6 text-right login top-menu-right">
+		{% if 'username' not in session %}
+		<a href="{{url_for('showLogin')}}">Login</a>
+		{% else %}
+		<a href="{{url_for('disconnect')}}">Disconnect</a>
+		{% endif %}
+	</div>
+</div>
+
+<div class="row neutral banner main">
+</div>

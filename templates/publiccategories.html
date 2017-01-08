@@ -1,0 +1,59 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+<div class="row neutral transition top-menu"><div>
+
+
+<div class="row flash">
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+          
+        <ul>
+        {% for message in messages %}
+            <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+</div>
+
+
+<div class="row neutral">
+    <div class="col-md-3 col-md-offset-3 title">
+        Categories
+    </div>
+
+    <div class="col-md-3 title"> 
+        Latest Items
+    </div>
+</div>
+
+<div class="row neutral data">
+        <div class="col-md-3 col-md-offset-3 blue categories pre-scrollable">
+        {% for category in categories %}
+        <a href="{{url_for('showAllItems', cat_name=category.name)}}">
+            <div class="menu-category">
+            <li>{{category.name}}</li>
+            </div>
+        </a>
+
+        {% endfor %}
+        </div>
+
+        <div class="col-md-3 blue items pre-scrollable">
+        {% for item in items %}
+        <a href="{{url_for('showOneItem', cat_name=item.category.name,
+       item_title=item.title)}}">
+        <div class="menu-item">
+        <li>{{item.title}} (<span class="menu-category">{{item.category.name}}<span/> {{item.user.name}})</li>
+        </div>
+        </a>
+        {% endfor %}
+        </div>
+
+</div>
+
+{% endblock %}
+
+

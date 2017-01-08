@@ -1,0 +1,24 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+<div class="row neutral transition top-menu"><div>
+
+
+<div class="row neutral col-md-4 col-md-offset-4">
+    <div class="title alert">
+        	Delete Item:
+        	<br>
+        	{{item.title}} from {{item.category.name}}
+    </div>
+    <div><h2>Are you sure you want to delete this item?</h2></div>
+    <div class="row neutral data">
+	<form action="#" method="post">
+	<button class="btn" type="submit">Delete</button>
+
+	</form>
+	<a href = '{{url_for('showCategories')}}'><button class="btn">Cancel</button> </a>
+	</div>
+</div>
+
+{% endblock %}

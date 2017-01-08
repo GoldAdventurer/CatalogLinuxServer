@@ -1,0 +1,16 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+<div>
+
+<h1> New Category
+</div>
+
+<form action = "#" method="post">
+	<label for="name"> Name:</label>
+		<input type="text" class="form-control" maxlength="100" name="name">
+		<button type="submit">Create</button>
+</form>
+
+{% endblock %}

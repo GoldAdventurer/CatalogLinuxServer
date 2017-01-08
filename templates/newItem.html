@@ -1,0 +1,51 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+
+<div class="row neutral transition top-menu"><div>
+
+
+<div class = 'flash'>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+          
+        <ul>
+        {% for message in messages %}
+            <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+</div>
+
+<div class="row neutral col-md-4 col-md-offset-4">
+    <div class=" title">
+        New Item
+    </div>
+
+    <div class="row neutral data">
+	<form action = "#" method="post">
+	<label for="title">Title</label>
+	<input type="text" class="" maxlength="100" name="title">
+	<label for="description">Description</label>
+	<input type="text" class="" maxlength="100" name="description">
+	<label for="category">Category</label>
+	<select name="category">
+  	{% for category in categories %}
+  	<option  value = {{category.name}}>{{category.name}}</option>
+  	{% endfor %}
+	</select>
+	
+	<div class="row"></div>
+
+	<button type="submit" class="btn">Save</button>
+	</form>
+	
+	<a href = '{{url_for('showCategories')}}'> 
+		<button class="btn">Cancel</button></a>
+
+	</div>
+</div>
+
+{% endblock %}
