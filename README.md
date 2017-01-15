@@ -50,6 +50,8 @@ The database contains three tables.
 --email (text)
 --picture (text).
 
+#### Login and Authentication
+The program uses Google and Facebook login methods. The file clients_secrets.json contains the client ID for the Google login and authentication. The application Id for facebook is mentioned in the file login.html.
 
 ### How to run the code
 
@@ -69,15 +71,15 @@ vagrant ssh
 #### Create the database  
 You can then run the application within the VM (python /vagrant/catalog/).
 ```
-python database.setup.py
+python database_setup.py
 ```
 Populate the database
 ```
-python lotsofitems.py
+python lotsofcategories.py
 ```
 run the server
 ```
-python tournament_test.py
+python project.py
 ```
 
 Access and test your application by visiting http://localhost:8000 locally

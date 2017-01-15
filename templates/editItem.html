@@ -11,21 +11,21 @@
     </div>
 
     <div class="row neutral data">
-	<form action="#" method="post">
-	<label for="title">Title</label>
-	<input type="text" class="" maxlength="100" name="title" placeholder="{{item.title}}">
-	<label for="description">Description</label>
-	<input type="text" class="" maxlength="100" name="description" placeholder="{{item.description}}">
-	<label for="description">Category</label>
-	<select name="category">
-  	{% for category in categories %}
-  	<option  value={{category.name}} placeholder="category">{{category.name}}</option>
-  	{% endfor %}
-	</select>
-	<button class="btn" type="submit">Save</button>
+		<form action="#" method="post">
+			<label for="title">Title</label>
+			<input type="text" class="" maxlength="100" name="title" placeholder="{{item.title}}">
+			<label for="description">Description</label>
+			<input type="text" class="" maxlength="100" name="description" placeholder="{{item.description}}">
+			<label for="description">Category</label>
+			<select name="category">
+  			{% for category in categories %}
+  			<option  value={{category.name}} placeholder="category">{{category.name}}</option>
+  			{% endfor %}
+			</select>
+			<button class="btn" type="submit">Save</button>
 
-	</form>
-	<a href = '{{url_for('showCategories')}}'><button class="btn">Cancel</button></a>
+		</form>
+		<a href = '{{url_for('showCategories')}}'><button class="btn">Cancel</button></a>
 	</div>
 </div>
 

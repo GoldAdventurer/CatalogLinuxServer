@@ -34,7 +34,7 @@
         {% for category in categories %}
         <a href="{{url_for('showAllItems', cat_name=category.name)}}">
             <div class="menu-category">
-            <li>{{category.name}}</li>
+                <li>{{category.name}}</li>
             </div>
         </a>
 
@@ -43,12 +43,12 @@
 
         <div class="col-md-3 blue items pre-scrollable">
         {% for item in items %}
-        <a href="{{url_for('showOneItem', cat_name=item.category.name,
+            <a href="{{url_for('showOneItem', cat_name=item.category.name,
        item_title=item.title)}}">
-        <div class="menu-item">
-        <li>{{item.title}} (<span class="menu-category">{{item.category.name}}<span/> {{item.user.name}})</li>
-        </div>
-        </a>
+                <div class="menu-item">
+                    <li>{{item.title}} (<span class="menu-category">{{item.category.name}}<span/>)</li>
+                </div>
+            </a>
         {% endfor %}
         </div>
 
