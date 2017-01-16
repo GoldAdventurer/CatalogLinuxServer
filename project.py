@@ -459,5 +459,7 @@ def getUserID(email):
 
 if __name__ == '__main__':
     app.secret_key = 'super_secret_key'
+    # Remember to turn off debugging when application is hosted 
+    # in production environment.
     app.debug = True
     app.run(host='0.0.0.0', port=8000)
