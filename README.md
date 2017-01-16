@@ -53,6 +53,8 @@ The database contains three tables.
 #### Login and Authentication
 The program uses Google and Facebook login methods. The file clients_secrets.json contains the client ID for the Google login and authentication. The application Id for facebook is mentioned in the file login.html.
 
+This program uses JSON files for authentication for both Google and Facebook (respectively client_secrets.json and fb_client_secrets.json). The two JSON files are not included.
+
 ### How to run the code
 
 The steps are:
