@@ -200,7 +200,7 @@ def fbconnect():
     #    redirect_uri=%s' \
     #    % (app_id, app_secret, access_token, redirect_uri)
 
-    url = 'https://graph.facebook.com/oauth/access_token?grant_type=\
+    url = 'https://graph.facebook.com/v2.9/oauth/access_token?grant_type=\
         fb_exchange_token&client_id=%s&clientsecret=%s&fb_exchange_token=%s' \
         % (app_id, app_secret, access_token)
 
@@ -339,7 +339,7 @@ def showOneItem(cat_name, item_title):
         return redirect(url_for('editItem', item_title=item.title,
                                 cat_name=cat_name))
     else:
-        return render_template('OneItem.html', item=item)
+        return render_template('oneItem.html', item=item)
 
 
 # show the details of all item that belong to a category
