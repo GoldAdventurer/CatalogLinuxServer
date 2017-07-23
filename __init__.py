@@ -211,11 +211,12 @@ def fbconnect():
 
     h = httplib2.Http()
     result = h.request(url, 'GET')[1]
-    data = json.loads(result)
     print('result is :' + result)
+    data = json.loads(result)
+    #print('result is :' + result)
 
     # use token to get user info from API
-    userinfo_url = "https://graph.facebook.com/v2.4/me"
+    userinfo_url = "https://graph.facebook.com/v2.9/me"
     # strip expire tag from access token
     ###token = result.split("&")[0]
     token = 'access_token=' + data['access_token']
