@@ -378,9 +378,10 @@ This program uses JSON files for authentication for both Google and Facebook (re
 
 ### About the .git folder
 Two methods can be used to ensure that the .git folder is not accessible via a browser publicly.
-[Amend the Apache config file](https://stackoverflow.com/questions/6142437/make-git-directory-web-inaccessible)
 
-Or [write a .htaccess file in the .git folder](https://serverfault.com/questions/128069/how-do-i-prevent-apache-from-serving-the-git-directory/325841)
+[Amend the Apache config file.](https://stackoverflow.com/questions/6142437/make-git-directory-web-inaccessible)
+
+Or [write a .htaccess file in the .git folder.](https://serverfault.com/questions/128069/how-do-i-prevent-apache-from-serving-the-git-directory/325841)
 
 ### Useful commands
 https://help.ubuntu.com/community/SSH/OpenSSH/InstallingConfiguringTesting
