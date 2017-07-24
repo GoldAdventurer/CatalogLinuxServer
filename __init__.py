@@ -175,7 +175,7 @@ def fbconnect():
         response.headers['Content-Type'] = 'application/json'
         return response
     access_token = request.data
-
+    print('access_token:'+ access_token)
     # Exchange client token for long-lived server-side token with GET /oauth/
     # access_token?grant_type=fb_exchange_token&client_id={app-id}&client_secret=
     # {app-secret}&fb_exchange_token={short-lived-token}
@@ -183,9 +183,9 @@ def fbconnect():
     # ['app_id']
     # app_id = json.loads(open('fb_client_secrets.json', 'r').read())['web']
     # ['app_secret']
-    app_id = json.loads(open('/var/www/catalog/catalog/fb_client_secrets.json', 'r').read())['web']
-    ['app_secret']
-
+    app_id = json.loads(open('/var/www/catalog/catalog/fb_client_secrets.json', 'r').read())['web']\
+    ['app_id']
+    print('app_id: ' + app_id)
     # redirect_uri = json.loads(open('fb_client_secrets.json', 'r').
     #                          read())['web']['redirect_uri']
 
@@ -194,17 +194,17 @@ def fbconnect():
 
     app_secret = json.loads(
         open('/var/www/catalog/catalog/fb_client_secrets.json', 'r').read())['web']['app_secret']
-
+    print('app_secret: '+app_secret)
     #url = 'https://graph.facebook.com/oauth/access_token?grant_type=\
     #    fb_exchange_token&client_id=%s&clientsecret=%s&fb_exchange_token=%s&\
     #    redirect_uri=%s' \
     #    % (app_id, app_secret, access_token, redirect_uri)
 
-    url = 'https://graph.facebook.com/v2.9/oauth/access_token?grant_type=\
-        fb_exchange_token&client_id=%s&clientsecret=%s&fb_exchange_token=%s' \
-        % (app_id, app_secret, access_token)
+    url = ('https://graph.facebook.com/v2.8/oauth/access_token?grant_type='
+        'fb_exchange_token&client_id=%s&clientsecret=%s&fb_exchange_token=%s') % (app_id, 
+        app_secret, access_token)
 
-    print('url facebook: '+url)
+    print ('url facebook: ' + url)
     #url = ('https://graph.facebook.com/v2.9/oauth/access_token?'
     #       'grant_type=fb_exchange_token&client_id=%s&client_secret=%s'
     #       '&fb_exchange_token=%s') % (app_id, app_secret, access_token)
@@ -213,7 +213,8 @@ def fbconnect():
     result = h.request(url, 'GET')[1]
     print('result is :' + result)
     data = json.loads(result)
-    #print('result is :' + result)
+    print('data is :')
+    print data
 
     # use token to get user info from API
     userinfo_url = "https://graph.facebook.com/v2.9/me"
