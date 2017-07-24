@@ -1,4 +1,4 @@
-## CATALOG Application
+# CATALOG Application
 
 This application provides a list of items within a variety of categories as well as provide a user registration and authentication system. Registered users have the ability to post, edit and delete their own items.
 The homepage displays all current categories along with the latest added items. Selecting a specific category shows you all the items available for that category.
@@ -7,30 +7,35 @@ After logging in, a user has the ability to add, update, or delete item info.
 
 There are four parts in this application:
 --the HTML (templates)
+
 --The CSS (in the static folder)
+
 --The Flask Application (in the file python.py)
+
 --The application includes authentication/authorization to allow users to login before making changes
+
 --The database (set up with the file database_setup.py and populated with the file lotsofitems.py)
 
 
-### Prerequisite 
+## Prerequisite 
 
-#### Lightsail Server
+### Lightsail Server
 The application was deployed on a server on Lightsail. The application uses Sqlalchemy and Flask.
 
-#### Linux Server configuration
-##### Server configuration: 
+### Linux Server configuration 
 IP: 54.179.143.72
+
 SSH Port: 2200
+
 Amazon Web Services URL: http://ec2-54-179-143-72.ap-southeast-1.compute.amazonaws.com/
 
-##### Steps to run the application live on a secure server
-###### Download private key from Amazon Lightsail console
-after the download, rename it as udacity_key.pem and move it into ~/.ssh folder
+## Steps to run the application live on a secure server
+### Download private key from Amazon Lightsail console
+After the download, rename it as udacity_key.pem and move it into ~/.ssh folder
 ```
 mv udacity_key.pem ~/.ssh
 ```
-###### Update and upgrade package source list 
+### Update and upgrade package source list 
 The list of packages is available in /etc/apt/source_list
 ```
 sudo apt-get update
@@ -43,11 +48,11 @@ And remove the unnecessary packages
 sudo apt-get autoremove
 ```
 
-###### Install new software finger
+### Install new software finger
 ```
 sudo apt-get install finger
 ```
-check the list of users with the command
+Check the list of users with the command
 ```
 finger
 ```
@@ -55,7 +60,7 @@ Check the details about the user ubuntu
 ```
 finger ubuntu
 ```
-###### Add user grader
+### Add user grader
 ```
 sudo adduser grader
 ```
@@ -68,7 +73,7 @@ Review the password entries file. The last line should contain the new user grad
 cat /etc/passwd
 ```
 
-###### Attribution of sudo rights
+### Attribution of sudo rights
 ```
 sudo ls -al /etc/sudoers.d
 ```
@@ -84,7 +89,7 @@ sudo nano /etc/sudoers.d/grader
 And then change "ubuntu" into "grader"
 (Note: User password expiration: sudo password -e grader)
 
-###### Connect with to the server after key encryption
+### Connect with to the server after key encryption
 On the LOCAL machine, type:
 ```
 ssh_keygen
@@ -103,11 +108,10 @@ copy the content of
 ```
 cat .ssh/grader.pub (on the local machine)
 ```
-and copy inside the authorized_keys file:
+And copy inside the authorized_keys file:
 ```
 nano .ssh/authorized_keys
 ```
-
 On the server, change file permissions
 ```
 chmod 700 .ssh
@@ -117,11 +121,11 @@ chmod 644 .ssh/authorized_keys
 ```
 
 Login from LOCAL machine:
-as grader: 
+As grader: 
 ```
 ssh -i ~/.ssh/grader grader@54.179.143.72 -p2200
 ```
-or as ubuntu: 
+Or as ubuntu: 
 ```
 ssh -i ~/.ssh/udacity_key.pem ubuntu@54.179.143.72 -p2200
 ```
@@ -136,7 +140,7 @@ The SSHD service, which is listening on all SSH connections needs to be started 
 sudo service ssh restart
 ```
 
-###### Set up firewalls
+### Set up firewalls
 We need to add rules and then turn on the firewall.
 Deny all incoming requests: 
 ```
@@ -146,12 +150,11 @@ Allow all outgoing requests:
 ```
 sudo ufw default allow outgoing
 ```
-check status:
+Check the status:
 ```
 sudo ufw status
 ```
 Configure the firewall by allowing ssh,tcp (port 2200), www (port 80), tcp (port 123)
-
 ```
 sudo ufw allow ssh
 ```
@@ -172,7 +175,7 @@ Check the status:
 ```
 sudo ufw status
 ```
-###### Install postgresql
+### Install postgresql
 ```
 sudo apt-get install postgresql postgresql-contrib
 ```
@@ -191,7 +194,7 @@ CREATE USER catalog
 \q
 ```
 
-###### Clone the git repository and tranfer the client_secrets JSON files (for Facebook and Google)
+### Clone the git repository and tranfer the client_secrets JSON files (for Facebook and Google)
 ```
 mkdir /var/www/catalog
 ```
@@ -211,13 +214,13 @@ sudo scp -v -i ~/.ssh/udacity_key.pem client_secrets.json ubuntu@54.179.143.72:/
 ``
 
 Then makes the following changes to project.py:
-Change the name to __init__.py
-Replace all the mentions to the JSON file by the whole path /var/www/catalog/catalog/client_secrest.json
-Replace the sqlite-related lines to `engine = create_engine('postgresql+psycopg2://catalog:aaa@localhost/catalog')`.
+- Change the name to __init__.py
+- Replace all the mentions to the JSON file by the whole path /var/www/catalog/catalog/client_secrest.json
+- Replace the sqlite-related lines to `engine = create_engine('postgresql+psycopg2://catalog:aaa@localhost/catalog')`.
 aaa is the password for user catalog.
-Add the URL and the IP to the Google and Facebook credentials pages.
+- Add the URL and the IP to the Google and Facebook credentials pages.
 
-###### Update the firewall
+### Update the firewall
 Now that we have uploaded the two JSON files using ssh we can disable port 22.
 ```
 sudo ufw delete allow ssh
@@ -225,8 +228,7 @@ sudo ufw delete allow ssh
 ```
 sudo ufw status
 ```
-
-###### Install and configure Apache
+### Install and configure Apache
 ```
 sudo apt-get install apache2
 ```
@@ -234,9 +236,8 @@ Install the application handler mod_wsgi:
 ```
 sudo apt-get install libapache2-mod-wsgi
 ```
-
 Configure Apache:
-edit the file /etc/apache2/sites-available/000-default.conf and add inside the text between <VirtualHost *:80> and </VirtualHost>
+Edit the file /etc/apache2/sites-available/000-default.conf and add inside the text between <VirtualHost *:80> and </VirtualHost>
 
 `        ServerName 54.179.143.72
         ServerAdmin grader@54.179.143.72
@@ -277,8 +278,7 @@ sys.path.insert(0,"/var/www/catalog/")
 from catalog import app as application
 application.secret_key = "/var/www/catalog/catalog/client_secrets.json"
 `
-
-###### Install other modules
+### Install other modules
 Upgrade pip at the root level:
 ```
 sudo -H pip install --upgrade pip
@@ -302,8 +302,7 @@ sudo pip install SQLAlchemy
 ```
 sudo apache2ctl restart
 ```
-
-###### Create  the database
+### Create  the database
 ```
 python database_setup.py
 ```
@@ -312,20 +311,19 @@ Populate the database
 python lotsofcategories.py
 ```
 
-###### Access to the website
+### Access to the website
 Use the AWS URL: http://ec2-54-179-143-72.ap-southeast-1.compute.amazonaws.com/ or type in: http://54.179.143.72
 
-
-######Debugging:
+###Debugging:
 Access the error log with:
 ```
 tail -50 /var/log/apache2/error.log is your friend
 ```
 Always restart apache with `sudo apache2ctl restart` whenever a change is made to the files
 
-### Description
+## Description
 
-#### Python Module
+### Python Module
 
 The file database_setup.py contains the database schema. The file lotsofitems.py helps to populate the database with one user and many items.
 
@@ -333,10 +331,10 @@ The file project.py contains the functions used to register, authenticate, conne
 
 The application also contains many templates in the folder templates, a css file and a png image in the static folder.
 
-#### Assets
+### Assets
 The banner was provided through the following website: theicss.org
 
-#### Database 
+### Database 
 
 The database contains three tables.
 
@@ -353,13 +351,13 @@ The database contains three tables.
 --email (text)
 --picture (text).
 
-#### Login and Authentication
+### Login and Authentication
 The program uses Google and Facebook login methods. The file clients_secrets.json contains the client ID for the Google login and authentication. The application Id for facebook is mentioned in the file login.html.
 
 This program uses JSON files for authentication for both Google and Facebook (respectively client_secrets.json and fb_client_secrets.json). The two JSON files are not included.
 
 
-#### About the .git folder
+### About the .git folder
 Two methods can be used to ensure that the .git folder is not accessible via a browser publicly.
 [Amend the Apache config file] 
 (https://stackoverflow.com/questions/6142437/make-git-directory-web-inaccessible)
@@ -367,7 +365,7 @@ Two methods can be used to ensure that the .git folder is not accessible via a b
 Or [write a .htaccess file in the .git folder]
 (https://serverfault.com/questions/128069/how-do-i-prevent-apache-from-serving-the-git-directory/325841)
 
-#### Useful commands
+### Useful commands
 https://help.ubuntu.com/community/SSH/OpenSSH/InstallingConfiguringTesting
 https://unix.stackexchange.com/questions/127886/how-can-i-restart-the-ssh-daemon-on-ubuntu
 https://www.digitalocean.com/community/tutorials/how-to-add-and-delete-users-on-an-ubuntu-14-04-vps
