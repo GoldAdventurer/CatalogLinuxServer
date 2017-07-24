@@ -6,6 +6,7 @@ Selecting a specific item shows you specific information of that item.
 After logging in, a user has the ability to add, update, or delete item info.
 
 There are four parts in this application:
+
 --the HTML (templates)
 
 --The CSS (in the static folder)
@@ -23,11 +24,11 @@ There are four parts in this application:
 The application was deployed on a server on Lightsail. The application uses Sqlalchemy and Flask.
 
 ### Linux Server configuration 
-IP: 54.179.143.72
+--IP: 54.179.143.72
 
-SSH Port: 2200
+--SSH Port: 2200
 
-Amazon Web Services URL: http://ec2-54-179-143-72.ap-southeast-1.compute.amazonaws.com/
+--Amazon Web Services URL: http://ec2-54-179-143-72.ap-southeast-1.compute.amazonaws.com/
 
 ## Steps to run the application live on a secure server
 ### Download private key from Amazon Lightsail console
@@ -204,14 +205,14 @@ mkdir /var/www/catalog/catalog
 ```
 sudo git clone https://github.com/GoldAdventurer/CATALOG
 ```
-Move to the folder which contains the two JSON files (on the local computer) after checking that the credentials client secret file match theÂcredentials on the [Google console](https://console.cloud.google.com/) or [facebook console](https://developers.facebook.com/apps/).
+Move to the folder which contains the two JSON files (on the local computer) after checking that the credentials of the client_secrets file match theÂcredentials on the [Google console](https://console.cloud.google.com/) or [facebook console](https://developers.facebook.com/apps/).
 
 ```
 sudo scp -v -i ~/.ssh/udacity_key.pem fb_client_secrets.json ubuntu@54.179.143.72:/var/www/app/catalog
-``
+```
 ```
 sudo scp -v -i ~/.ssh/udacity_key.pem client_secrets.json ubuntu@54.179.143.72:/var/www/app/catalog
-``
+```
 
 Then makes the following changes to project.py:
 - Change the name to __init__.py
@@ -237,9 +238,11 @@ Install the application handler mod_wsgi:
 sudo apt-get install libapache2-mod-wsgi
 ```
 Configure Apache:
-Edit the file /etc/apache2/sites-available/000-default.conf and add inside the text between <VirtualHost *:80> and </VirtualHost>
+
+Edit the file` /etc/apache2/sites-available/000-default.conf` and add inside the text between <VirtualHost *:80> and </VirtualHost>
 
 `        ServerName 54.179.143.72
+
         ServerAdmin grader@54.179.143.72
 
         <Directory /var/www/catalog/catalog>
@@ -259,7 +262,7 @@ Edit the file /etc/apache2/sites-available/000-default.conf and add inside the t
         WSGIScriptAlias / /var/www/catalog/myapp.wsgi
 `
 
-The paragraph starting with "<Directorymatch" prevents Apache from serving the.gitÂ directory and ensuring the folder is not publicly accessible via a browser. There is another method using the .htaccess file in the .git folder (see below)
+The paragraph starting with "<Directorymatch" prevents Apache from serving the .git directory and ensuring the folder is not publicly accessible via a browser. There is another method using the .htaccess file in the .git folder (see below)
 
 Restart Apache
 ```
@@ -270,12 +273,17 @@ Write file myapp.wsgi in the folder /var/www/catalog:
 
 `
 #!/usr/bin/python
+
 import sys
+
 import logging
+
 logging.basicConfig(stream=sys.stderr)
+
 sys.path.insert(0,"/var/www/catalog/")
 
 from catalog import app as application
+
 application.secret_key = "/var/www/catalog/catalog/client_secrets.json"
 `
 ### Install other modules
@@ -302,7 +310,7 @@ sudo pip install SQLAlchemy
 ```
 sudo apache2ctl restart
 ```
-### Create  the database
+### Create the database
 ```
 python database_setup.py
 ```
@@ -311,7 +319,8 @@ Populate the database
 python lotsofcategories.py
 ```
 
-### Access to the website
+### Access the website
+
 Use the AWS URL: http://ec2-54-179-143-72.ap-southeast-1.compute.amazonaws.com/ or type in: http://54.179.143.72
 
 ###Debugging:
@@ -339,16 +348,25 @@ The banner was provided through the following website: theicss.org
 The database contains three tables.
 
 - category : each entry contains an ID (integer) and a name (text). The ID is the primary key.
+
 - item: this table contains all the titles, descriptions, the category ID as well as the ID or the item's creator:
+
 --title (text)
+
 --ID (integer). The ID is the primary key.
+
 --cat_id (integer)
+
 --and user_id (integer). 
   
 - user: this table contains four columns:
+
 --the ID (primary key)
+
 --name (text)
+
 --email (text)
+
 --picture (text).
 
 ### Login and Authentication
@@ -359,11 +377,9 @@ This program uses JSON files for authentication for both Google and Facebook (re
 
 ### About the .git folder
 Two methods can be used to ensure that the .git folder is not accessible via a browser publicly.
-[Amend the Apache config file] 
-(https://stackoverflow.com/questions/6142437/make-git-directory-web-inaccessible)
+[Amend the Apache config file](https://stackoverflow.com/questions/6142437/make-git-directory-web-inaccessible)
 
-Or [write a .htaccess file in the .git folder]
-(https://serverfault.com/questions/128069/how-do-i-prevent-apache-from-serving-the-git-directory/325841)
+Or [write a .htaccess file in the .git folder](https://serverfault.com/questions/128069/how-do-i-prevent-apache-from-serving-the-git-directory/325841)
 
 ### Useful commands
 https://help.ubuntu.com/community/SSH/OpenSSH/InstallingConfiguringTesting
