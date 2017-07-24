@@ -7,7 +7,7 @@ After logging in, a user has the ability to add, update, or delete item info.
 
 There are four parts in this application:
 
---the HTML (templates)
+--The HTML (templates)
 
 --The CSS (in the static folder)
 
@@ -44,7 +44,7 @@ sudo apt-get update
 ```
 sudo apt-get upgrade
 ```
-And remove the unnecessary packages
+And remove the unnecessary packages:
 ```
 sudo apt-get autoremove
 ```
@@ -53,11 +53,11 @@ sudo apt-get autoremove
 ```
 sudo apt-get install finger
 ```
-Check the list of users with the command
+Check the list of users with the command:
 ```
 finger
 ```
-Check the details about the user ubuntu
+Check the details about the user ubuntu:
 ```
 finger ubuntu
 ```
@@ -65,7 +65,7 @@ finger ubuntu
 ```
 sudo adduser grader
 ```
-Review the user's detail
+Review the user's detail:
 ```
 finger user
 ```
@@ -87,7 +87,7 @@ sudo cp /etc/sudoers.d/90-cloud-init-users /etc/sudoers.d/grader
 ```
 sudo nano /etc/sudoers.d/grader
 ```
-And then change "ubuntu" into "grader"
+And then change "ubuntu" into "grader".
 (Note: User password expiration: sudo password -e grader)
 
 ### Connect with to the server after key encryption
@@ -113,7 +113,7 @@ And copy inside the authorized_keys file:
 ```
 nano .ssh/authorized_keys
 ```
-On the server, change file permissions
+On the server, change file permissions:
 ```
 chmod 700 .ssh
 ```
@@ -131,11 +131,12 @@ Or as ubuntu:
 ssh -i ~/.ssh/udacity_key.pem ubuntu@54.179.143.72 -p2200
 ```
 
-Disable password-based logins
+Disable password-based logins:
 ```
 sudo nano /etc/ssh/sshd_config
 ```
-Change "PasswordAuthentication yes" to "PasswordAuthentication no"
+Change "PasswordAuthentication yes" to "PasswordAuthentication no".
+
 The SSHD service, which is listening on all SSH connections needs to be started again to read teh configuration file.
 ```
 sudo service ssh restart
@@ -241,7 +242,8 @@ Configure Apache:
 
 Edit the file` /etc/apache2/sites-available/000-default.conf` and add inside the text between <VirtualHost *:80> and </VirtualHost>
 
-`        ServerName 54.179.143.72
+`        
+        ServerName 54.179.143.72
 
         ServerAdmin grader@54.179.143.72
 
@@ -262,7 +264,7 @@ Edit the file` /etc/apache2/sites-available/000-default.conf` and add inside the
         WSGIScriptAlias / /var/www/catalog/myapp.wsgi
 `
 
-The paragraph starting with "<Directorymatch" prevents Apache from serving the .git directory and ensuring the folder is not publicly accessible via a browser. There is another method using the .htaccess file in the .git folder (see below)
+The paragraph starting with "<Directorymatch" prevents Apache from serving the .git directory and ensures the folder is not publicly accessible via a browser. There is another method using the .htaccess file in the .git folder (see below).
 
 Restart Apache
 ```
@@ -271,8 +273,7 @@ sudo apache2ctl restart
 
 Write file myapp.wsgi in the folder /var/www/catalog:
 
-`
-#!/usr/bin/python
+`#!/usr/bin/python
 
 import sys
 
@@ -314,7 +315,7 @@ sudo apache2ctl restart
 ```
 python database_setup.py
 ```
-Populate the database
+Populate the database:
 ```
 python lotsofcategories.py
 ```
@@ -323,7 +324,7 @@ python lotsofcategories.py
 
 Use the AWS URL: http://ec2-54-179-143-72.ap-southeast-1.compute.amazonaws.com/ or type in: http://54.179.143.72
 
-###Debugging:
+### Debugging:
 Access the error log with:
 ```
 tail -50 /var/log/apache2/error.logÂ is your friend
@@ -351,23 +352,23 @@ The database contains three tables.
 
 - item: this table contains all the titles, descriptions, the category ID as well as the ID or the item's creator:
 
---title (text)
+    --title (text)
 
---ID (integer). The ID is the primary key.
+    --ID (integer). The ID is the primary key.
 
---cat_id (integer)
+    --cat_id (integer)
 
---and user_id (integer). 
+    --and user_id (integer). 
   
 - user: this table contains four columns:
 
---the ID (primary key)
+    --the ID (primary key)
 
---name (text)
+    --name (text)
 
---email (text)
+    --email (text)
 
---picture (text).
+    --picture (text).
 
 ### Login and Authentication
 The program uses Google and Facebook login methods. The file clients_secrets.json contains the client ID for the Google login and authentication. The application Id for facebook is mentioned in the file login.html.
