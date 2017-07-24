@@ -19,18 +19,18 @@ There are four parts in this application:
 The application was deployed on a server on Lightsail. The application uses Sqlalchemy and Flask.
 
 #### Linux Server configuration
-#####Server configuration: 
+##### Server configuration: 
 IP: 54.179.143.72
 SSH Port: 2200
 Amazon Web Services URL: http://ec2-54-179-143-72.ap-southeast-1.compute.amazonaws.com/
 
-#####Steps to run the application live on a secure server
-######Download private key from Amazon Lightsail console
+##### Steps to run the application live on a secure server
+###### Download private key from Amazon Lightsail console
 after the download, rename it as udacity_key.pem and move it into ~/.ssh folder
 ```
 mv udacity_key.pem ~/.ssh
 ```
-######Update and upgrade package source list 
+###### Update and upgrade package source list 
 The list of packages is available in /etc/apt/source_list
 ```
 sudo apt-get update
@@ -43,7 +43,7 @@ And remove the unnecessary packages
 sudo apt-get autoremove
 ```
 
-######Install new software finger
+###### Install new software finger
 ```
 sudo apt-get install finger
 ```
@@ -55,7 +55,7 @@ Check the details about the user ubuntu
 ```
 finger ubuntu
 ```
-######Add user grader
+###### Add user grader
 ```
 sudo adduser grader
 ```
@@ -68,7 +68,7 @@ Review the password entries file. The last line should contain the new user grad
 cat /etc/passwd
 ```
 
-######Attribution of sudo rights
+###### Attribution of sudo rights
 ```
 sudo ls -al /etc/sudoers.d
 ```
@@ -84,7 +84,7 @@ sudo nano /etc/sudoers.d/grader
 And then change "ubuntu" into "grader"
 (Note: User password expiration: sudo password -e grader)
 
-######Connect with to the server after key encryption
+###### Connect with to the server after key encryption
 On the LOCAL machine, type:
 ```
 ssh_keygen
@@ -121,7 +121,7 @@ as grader:
 ```
 ssh -i ~/.ssh/grader grader@54.179.143.72 -p2200
 ```
-as ubuntu: 
+or as ubuntu: 
 ```
 ssh -i ~/.ssh/udacity_key.pem ubuntu@54.179.143.72 -p2200
 ```
@@ -136,7 +136,7 @@ The SSHD service, which is listening on all SSH connections needs to be started 
 sudo service ssh restart
 ```
 
-######Set up firewalls
+###### Set up firewalls
 We need to add rules and then turn on the firewall.
 Deny all incoming requests: 
 ```
@@ -172,7 +172,7 @@ Check the status:
 ```
 sudo ufw status
 ```
-######install postgresql
+###### Install postgresql
 ```
 sudo apt-get install postgresql postgresql-contrib
 ```
@@ -213,11 +213,11 @@ sudo scp -v -i ~/.ssh/udacity_key.pem client_secrets.json ubuntu@54.179.143.72:/
 Then makes the following changes to project.py:
 Change the name to __init__.py
 Replace all the mentions to the JSON file by the whole path /var/www/catalog/catalog/client_secrest.json
-Replace the sqlite-related lines to `engine = create_engine('postgresql+psycopg2://catalog:aaa@localhost/catalog')`
+Replace the sqlite-related lines to `engine = create_engine('postgresql+psycopg2://catalog:aaa@localhost/catalog')`.
 aaa is the password for user catalog.
 Add the URL and the IP to the Google and Facebook credentials pages.
 
-######Update the firewall
+###### Update the firewall
 Now that we have uploaded the two JSON files using ssh we can disable port 22.
 ```
 sudo ufw delete allow ssh
@@ -226,7 +226,7 @@ sudo ufw delete allow ssh
 sudo ufw status
 ```
 
-######Install and configure Apache
+###### Install and configure Apache
 ```
 sudo apt-get install apache2
 ```
@@ -280,7 +280,7 @@ application.secret_key = "/var/www/catalog/catalog/client_secrets.json"
 
 ###### Install other modules
 Upgrade pip at the root level:
-````
+```
 sudo -H pip install --upgrade pip
 ```
 ```
@@ -303,7 +303,7 @@ sudo pip install SQLAlchemy
 sudo apache2ctl restart
 ```
 
-######Create  the database
+###### Create  the database
 ```
 python database_setup.py
 ```
@@ -312,7 +312,7 @@ Populate the database
 python lotsofcategories.py
 ```
 
-######Access to the website
+###### Access to the website
 Use the AWS URL: http://ec2-54-179-143-72.ap-southeast-1.compute.amazonaws.com/ or type in: http://54.179.143.72
 
 
@@ -367,7 +367,7 @@ Two methods can be used to ensure that the .git folder is not accessible via a b
 Or [write a .htaccess file in the .git folder]
 (https://serverfault.com/questions/128069/how-do-i-prevent-apache-from-serving-the-git-directory/325841)
 
-####Useful commands
+#### Useful commands
 https://help.ubuntu.com/community/SSH/OpenSSH/InstallingConfiguringTesting
 https://unix.stackexchange.com/questions/127886/how-can-i-restart-the-ssh-daemon-on-ubuntu
 https://www.digitalocean.com/community/tutorials/how-to-add-and-delete-users-on-an-ubuntu-14-04-vps
